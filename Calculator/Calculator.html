@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Calculator </title>
+		<link type="text/css" rel="stylesheet" href="calculator.css"/>
+	</head>
+
+	<body>
+		<form>
+			<div id="calculator" name="calculator">
+				<div id="ans_holder" align="right"> <span id="ans"> ans = 0 </span> </div>
+
+				<div id="input_holder"> <span id="input"> </span> </div> <br>
+
+				<span id="row1">
+					<div class="button_holder"> <span id="button_cover"> </span> </div>
+					<div class="button_holder"> <span id="mode" class="button" onclick=""/> Deg </span> </div>
+					<div class="button_holder"> <span id="button_factorial" class="button" onclick="input.innerHTML = factorial(input.innerText)"/> ! </span> </div>
+					
+					<div class="button_holder"> <span id="button_left_parenthesis" class="button" onclick="input.innerText += '('"/> ( </span> </div>
+					<div class="button_holder"> <span id="button_right_parenthesis" class="button" onclick="input.innerText += ')'"/> ) </span> </div>
+					<div class="button_holder"> <span id="button_back" class="button" onclick="input.innerText = input.innerText.slice(0, input.innerText.length-1);"/> &#8592; </span> </div>
+					<div class="button_holder"> <span id="button_clear" class="button" onclick="input.innerText = ''"/> C </span> </div>
+				</span> <br>
+
+				<span id="row2">
+					<div class="button_holder"> <span id="button_inv" class="button"/> Inv </span> </div>
+					<div class="button_holder"> <span id="button_sin" class="button" onclick="input.innerText += 'sin('"/> sin </span> </div>
+					<div class="button_holder"> <span id="button_ln" class="button" onclick="input.innerText += 'ln('"/> ln </span> </div>
+					<div class="button_holder"> <span id="button9" class="button number" onclick="input.innerText += 7"/> 7 </span> </div>
+					<div class="button_holder"> <span id="button8" class="button number" onclick="input.innerText += 8"/> 8 </span> </div>
+					<div class="button_holder"> <span id="button7" class="button number" onclick="input.innerText += 9"/> 9 </span> </div>
+					<div class="button_holder"> <span id="button_divide" class="button" onclick="input.innerText += '/'"/> / </span> </div>
+				</span> <br>
+
+				<span id="row3">
+					<div class="button_holder"> <span id="button_pi" class="button" onclick="input.innerText += 'π'"/> π </span> </div>
+					<div class="button_holder"> <span id="button_cos" class="button" onclick="input.innerText += 'cos('"/> cos </span> </div>
+					<div class="button_holder"> <span id="button_log" class="button" onclick="input.innerText += 'log('"/> log </span> </div>
+					<div class="button_holder"> <span id="button6" class="button number" onclick="input.innerText += 4"/> 4 </span> </div>
+					<div class="button_holder"> <span id="button5" class="button number" onclick="input.innerText += 5"/> 5 </span> </div>
+					<div class="button_holder"> <span id="button4" class="button number" onclick="input.innerText += 6"/> 6 </span> </div>
+					<div class="button_holder"> <span id="button_multiply" class="button" onclick="input.innerText += '*'"/> * </span> </div>
+				</span> <br>
+
+				<span id="row4">
+					<div class="button_holder"> <span id="button_e" class="button" onclick="input.innerText += 'e'"/> e </span> </div>
+					<div class="button_holder"> <span id="button_tan" class="button" onclick="input.innerText += 'tan('"/> tan </span> </div>
+					<div class="button_holder"> <span id="button_sqrt" class="button" onclick="input.innerText += '&#8730;('"/> &#8730; </span> </div>
+					<div class="button_holder"> <span id="button3" class="button number" onclick="input.innerText += 1"/> 1 </span> </div>
+					<div class="button_holder"> <span id="button2" class="button number" onclick="input.innerText += 2"/> 2 </span> </div>
+					<div class="button_holder"> <span id="button1" class="button number" onclick="input.innerText += 3"/> 3 </span> </div>
+					<div class="button_holder"> <span id="button_subtract" class="button" onclick="input.innerText += '-'"/> - </span> </div>
+				</span> <br>
+
+				<span id="row5">
+					<div class="button_holder"> <span id="button_ans" class="button" onclick="input.innerText += 'Ans'"/> Ans </span> </div>
+					<div class="button_holder"> <span id="button_exp" class="button" onclick="input.innerText += 'Exp('"/> Exp </span> </div>
+					<div class="button_holder"> <span id="button_dir_exp" class="button" onclick="input.innerText += '^'"/> x<sup style="font-size: 10px;">y</sup> </span> </div>
+					<div class="button_holder"> <span id="button0" class="button number" onclick="input.innerText += 0"/> 0 </span> </div>
+					<div class="button_holder"> <span id="button_decimal" class="button" onclick="input.innerText += '.'"/> . </span> </div>
+					<div class="button_holder"> <span id="button_equal" class="button" onclick="check();"/> = </span> </div>
+					<div class="button_holder"> <span id="button_plus" class="button" onclick="input.innerText += '+'"/> + </span> </div>
+				</span> <br>
+			</div>
+		</form> <br>
+
+		<a href="file:///C:/Users/Mwayi/Desktop/HTML,%20CSS,%20and%20JS%20Programs/mysite.html"> Back to my Website </a>
+
+		<script src="calculator.js"> </script>
+	</body>
+</html>
