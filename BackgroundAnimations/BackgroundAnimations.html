@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title> Background Animation </title>
+		
+		<style>
+		
+			#canvas {
+		
+				border: solid 1.25px black;
+				
+			}
+		
+			body {
+			
+				font-family: Helvetica;
+			
+			}
+            
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<canvas id="canvas" width="400" height="400"></canvas> <br> <br>
+		
+		<a href="file:///C:/Users/John/Saved%20Games/Games.html"> Back to my website </a>
+		
+		<script>
+		
+		window.onload = function() {
+    
+		  var canvas = document.getElementById("canvas");
+		  var ctx = canvas.getContext("2d");
+		  var flakes = [];
+		  
+			function drawFlakes() {
+				  
+				var x = Math.floor(Math.random() * canvas.width) + 1; 
+				var y = Math.floor(Math.random() * -5) - 1;
+				var s = Math.floor(Math.random() * 3) + 1;
+				
+				flakes.push({"x": x, "y": y, "s": s});
+				
+			}
+			  
+			function track() {
+				
+				drawFlakes();
+			
+				for (var i = 0; i < flakes.length; i++) {
+					
+					ctx.beginPath();
+					ctx.fillStyle = "black";
+					ctx.arc(flakes[i].x, flakes[i].y+=flakes[i].s*0.5, flakes[i].s*0.5, 0, Math.PI*2, false);
+					ctx.fill();
+					ctx.closePath();
+					
+					if (flakes[i].y > canvas.height) {
+						
+						flakes.splice(i, 1);
+						
+					}
+					
+				}
+				  
+			}
+			  
+			function draw() {
+				
+				ctx.save();
+				
+				ctx.rotate(0);
+				
+				ctx.clearRect(-10, -10, canvas.width+1000, canvas.width+1000);
+				  
+				track();
+				  
+				requestAnimationFrame(draw);
+				
+				ctx.restore();
+				  
+			}
+			  
+			draw();
+
+		};
+
+		
+		</script>
+		
+	</body>
+	
+</html>
