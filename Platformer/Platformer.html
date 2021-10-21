@@ -1,0 +1,213 @@
+<html><head>
+
+	    <meta charset="UTF-8">
+
+	    <title> Small Platformer </title>
+
+		<style type="text/css">
+
+			body {
+
+				font-family: Helvetica;
+
+			}
+		   
+		</style>
+
+	</head>
+
+	<body>
+
+		<canvas width="450" height="450" id="canvas"> </canvas> <br> <br>
+		
+		<input type="button" value="Reset" onclick="platforms.length=0;" style="border-radius: 6px; background: linear-gradient(gray, white);"> <br> <br>
+
+		<a href="file:///C:/Users/John/Saved%20Games/Games.html"> Back to my website </a>
+
+		<script>
+			
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+			var width = canvas.width;
+			var height = canvas.height;
+			
+			//player variables
+			var x = canvas.width/2;
+			var y = canvas.width/2;
+			var w = 10;
+			var h = 15;
+			
+			//platform variables
+			var platforms = [];
+			var platformAmount = 200;
+			
+			//other important variables
+			var gravity = 0.3;
+			var velocity = 0;
+			var speed = 5;
+			var jumping = false;
+			var leftPressed = false;
+			var rightPressed = false;
+			var upPressed = false;
+			
+			document.addEventListener("keydown", d);
+			document.addEventListener("keyup", u);
+			
+			function d(e) {
+			
+				if (e.keyCode === 37) {
+				
+					leftPressed = true;
+				
+				} else if (e.keyCode === 39) {
+				
+					rightPressed = true;
+				
+				}
+				
+				if (e.keyCode === 38) {
+				
+					upPressed = true;
+				
+				}
+			
+			}
+			
+			function u(e) {
+			
+				if (e.keyCode === 37) {
+				
+					leftPressed = false;
+				
+				} else if (e.keyCode === 39) {
+				
+					rightPressed = false;
+				
+				}
+				
+				if (e.keyCode === 38) {
+				
+					upPressed = false;
+				
+				}
+			
+			}
+			
+			function track() {
+			
+				for (var i = 0; i < platformAmount; i++) {
+				
+					platforms.push({
+						
+						w: Math.floor(Math.random()*30)+10,
+						h: Math.floor(Math.random()*10)+10,
+						x: Math.floor(Math.random()*(width-w)),
+						y: Math.floor(Math.random()*(height-h)),
+				
+					});
+				}
+				
+				if (platforms.length > platformAmount) {
+				
+					platforms.length = platformAmount;
+				
+				}
+				
+			}
+			
+			function drawPlat() {
+			
+				track();
+				
+				for (var i = 0; i < platforms.length; i++) {
+
+					var b = platforms[i];
+				
+					ctx.fillStyle = "gray";
+					ctx.fillRect(b.x, b.y, b.w, b.h);
+					
+					if (x+w >= b.x && x <= b.x+b.w && y+h >= b.y && y+h-3 <= b.y) {
+					
+						y = b.y-h;
+						jumping = false;
+						
+						if (!upPressed) {
+						
+							velocity = 0;
+						
+						}
+					
+					}
+				
+				}
+			
+			}
+			
+			function drawPlayer() {
+			
+				ctx.fillStyle = "white";
+				ctx.fillRect(x, y, w, h);
+			
+			}
+			
+			function draw() {
+			
+				ctx.fillStyle = "black";
+				ctx.fillRect(0, 0, width, height);
+
+				drawPlat();
+				drawPlayer();
+				
+				velocity+=gravity;
+				y+=velocity;
+				
+				if (leftPressed && x >= 0) {
+				
+					x-=speed;
+				
+				} else if (rightPressed && x <= width-w) {
+				
+					x+=speed;
+				
+				}
+				
+				if (!jumping) {
+				
+					if (upPressed) {
+					
+						jumping = true;
+						velocity=-7;
+					
+					}
+				
+				}
+				
+				if (y >= height-h) {
+				
+					y=height-h;
+					jumping = false;
+				
+				} else if (y <= 0) {
+				
+					y = 0;
+					jumping = true;
+				
+				}
+			
+			}
+			
+			function update() {
+			
+				draw();
+				
+				requestAnimationFrame(update);
+			
+			}
+			
+			update();
+
+		</script>
+	  
+	
+
+</body></html>
