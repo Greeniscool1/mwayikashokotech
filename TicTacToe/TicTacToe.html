@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html><head>
+	
+		<style>
+		
+			body {
+			
+				font-family: Helvetica;
+			
+			}
+			
+		</style>
+	
+	</head>
+	
+	<body>
+	
+		<canvas id="canvas" width="500" height="500"> </canvas> <br> <br>
+		
+		<a href="file:///C:/Users/John/Saved%20Games/Games.html"> Back to my website </a> <br> <br>
+		
+		<script>
+		
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+		
+			var cols = 3;
+			var rows = 3;
+			var sqW = canvas.width/3;
+			var sqH = canvas.height/3;
+			var board = [];
+			var checker = 0;
+			var player1 = 0;
+			var player2 = 0;
+			var won = false;
+		
+			for (var i = 0; i < rows; i++) {
+			
+				board[i] = [];
+				
+				for (var j = 0; j < cols; j++) {
+				
+					board[i][j] = {
+						
+						x: 0,
+						y: 0,
+						takenX: false,
+						takenO: false,
+						taken: false,
+					
+					};
+				
+				}
+			
+			}
+			
+			function collision(e) {
+						
+				var mouseX = e.clientX-canvas.offsetLeft;
+				var mouseY = e.clientY-canvas.offsetTop;
+				
+				for (var i = 0; i < rows; i++) {
+				
+					for (var j = 0; j < cols; j++) {
+				
+						var b = board[i][j];
+				
+						if (mouseX >= b.x && mouseX <= b.x+sqW && mouseY >= b.y && mouseY <= b.y+sqH && mouseX > 0 && mouseX < canvas.width && mouseY > 0 && mouseY < canvas.height) {
+							
+							if (!b.takenX && !b.takenO) {
+							
+								if (checker % 2 == 0 ) {
+								
+									ctx.fillStyle = "red";
+									ctx.font = "100px Arial";
+									ctx.fillText("X", b.x+50, b.y+120);
+									b.takenX = true;
+									b.taken = true;
+									
+								} else if (checker % 2 == 1) {
+								
+									ctx.fillStyle = "blue";
+									ctx.font = "100px Arial";
+									ctx.fillText("O", b.x+50, b.y+120);
+									b.takenO = true;
+									b.taken = true;
+								
+								}
+								
+								checker++;
+							
+							}
+
+						}
+							
+					}
+						
+				}
+							
+			}
+			
+			function check() {
+			
+				if (board[0][0].takenX === true && board[1][0].takenX === true && board[2][0].takenX === true || board[0][1].takenX === true && board[1][1].takenX === true && board[2][1].takenX === true || board[0][2].takenX === true && board[1][2].takenX === true && board[2][2].takenX === true || board[0][0].takenX === true && board[0][1].takenX === true && board[0][2].takenX === true || board[1][0].takenX === true && board[1][1].takenX === true && board[1][2].takenX === true || board[2][0].takenX === true && board[2][1].takenX === true && board[2][2].takenX === true || board[0][0].takenX === true && board[1][1].takenX === true && board[2][2].takenX === true || board[0][2].takenX === true && board[1][1].takenX === true && board[2][0].takenX === true) {
+							
+					player1++;
+					checker = 1;
+					alert("Player One Wins!!! Scores: Player One: " + player1 + " Player Two: " + player2);
+					won = true;
+							
+				} else if (board[0][0].takenO === true && board[1][0].takenO === true && board[2][0].takenO === true || board[0][1].takenO === true && board[1][1].takenO === true && board[2][1].takenO === true || board[0][2].takenO === true && board[1][2].takenO === true && board[2][2].takenO === true || board[0][0].takenO === true && board[0][1].takenO === true && board[0][2].takenO === true || board[1][0].takenO === true && board[1][1].takenO === true && board[1][2].takenO === true || board[2][0].takenO === true && board[2][1].takenO === true && board[2][2].takenO === true || board[0][0].takenO === true && board[1][1].takenO === true && board[2][2].takenO === true || board[0][2].takenO === true && board[1][1].takenO === true && board[2][0].takenO === true) {
+							
+					player2++;
+					checker = 0;
+					alert("Player Two Wins!!! Scores: Player One: " + player1 + " Player Two: " + player2);
+					won = true;
+							
+				} else if (board[0][0].taken === true && board[0][1].taken === true && board[0][2].taken === true && board[1][0].taken === true && board[2][0].taken === true && board[1][1].taken === true && board[2][2].taken === true && board[1][2].taken === true && board[2][1].taken === true) {
+				
+					alert("Draw");
+					won = true;
+				
+				} else {
+				
+					won = false;
+				
+				}
+			
+			}
+			
+			function reset() {
+			
+				for (var i = 0; i < rows; i++) {
+				
+					for (var j = 0; j < cols; j++) {
+					
+						var b = board[i][j];
+						
+						if (won) {
+							
+							ctx.clearRect(b.x+50, b.y+45, sqW-90, sqH-85);
+							b.takenX = false;
+							b.takenO = false;
+							b.taken = false;
+						
+						}
+					
+					}
+				
+				}
+			
+			}
+			
+			function drawGrid() {
+			
+				for (var i = 0; i < rows; i++) {
+				
+					for (var j = 0; j < cols; j++) {
+					
+						document.addEventListener("click", collision);
+						document.addEventListener("click", check);
+						document.addEventListener("click", reset);
+						
+						var b = board[i][j];
+					
+						var gridX = i * (sqW);
+						var gridY = j * (sqH);
+						b.x = gridX;
+						b.y = gridY;
+						
+						ctx.strokeStyle = "black"
+						ctx.strokeRect(b.x, b.y, sqW, sqH);
+					
+					}
+				
+				}
+			
+			}
+			
+			function draw() {
+			
+				drawGrid();
+			
+			}
+			
+			draw();
+		
+		</script>
+	
+	
+
+</body></html>
