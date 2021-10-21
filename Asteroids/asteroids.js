@@ -73,7 +73,7 @@ function draw() {
 	
 	if (lives <= 0) {
 		alert("You Lose");
-		return;
+		location.reload();
 	}
 	
 	if (time%900 === 0) {
