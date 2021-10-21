@@ -28,15 +28,13 @@
 	
         <canvas height="450" width="375" id="canvas"></canvas> <br> <br>
 		
-		<input id="amount" type="range" min="0" value="65" max="100">
-		
 		<a href="file:///C:/Users/John/Saved%20Games/Games.html"> Back to my website </a>
 		
 		<script>
 			
 			var canvas = document.getElementById("canvas");
 			var ctx = canvas.getContext("2d");
-			var amount = document.getElementById("amount");
+			var amount = 65
 			var w = canvas.width;
 			var h = canvas.height;
 			var x = 40;
@@ -87,7 +85,7 @@
 				var bx = canvas.width-1;
 				var by = Math.floor(Math.random() * 250) + 75;
 				
-				if (time%amount.value <= 0) {
+				if (time%amount <= 0) {
 					
 					pipes.push({"x": x, "y": y, "s": speed});
 					opening.push({"x":bx, "y": by, "s": speed});
