@@ -1,0 +1,28 @@
+<html><head>
+		<title> Physics Simulator in HTML5 </title>
+		
+		<link href="physics.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+		<canvas id="canvas" width="500" height="500"> </canvas> <br> <br>
+		
+		Gravity <input type="number" id="gravity" class="range" value="0" min="-2" max="2" step="0.1"> Ball to look at (0-9) <input id="stalk" type="number" min="0" max="9" value="0"> <input type="button" value="reset" style="border-radius:6px;" onclick="reset();"> <br>
+		<span id="stats">X: 32, Y: 486.00, VelX: -1.00, VelY: -0.05, Radius: 14</span> <br>
+		Bounciness <input type="number" id="bounce" class="range" value="0.9" min="0" max="3" step="0.1"> <br>
+		
+		<div id="options">
+			Collision with walls <input type="checkbox" id="wall-collision" checked=""> <br>
+			Collision with other balls <input type="checkbox" id="ball-collision"> <br>
+			Vectors from the center of the screen showing position <input type="checkbox" id="position-vector"> <br>
+			Platform in the center of the screen <input type="checkbox" id="platform"> X-position for platform: <input value="250" id="plat-x" type="number" min="0" max="500" disabled=""> y-position for Platform: <input id="plat-y" type="number" min="0" max="500" value="250" disabled=""> Width for platform: <input id="plat-w" type="number" min="0" max="500" value="50" disabled=""> height for platform: <input id="plat-h" type="number" min="0" max="500" value="50" disabled=""> <br>
+		</div>
+		
+		<a href="file:///C:/Users/John/Saved%20Games/Games.html"> Back to my website </a>
+		
+		<script src="physics_functions.js"> </script>
+		<script src="physics_ball.js"> </script>
+		<script src="physics_platforms.js"> </script>
+		<script src="physics.js"> </script>
+    
+</body></html>
